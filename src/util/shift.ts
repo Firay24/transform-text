@@ -3,7 +3,7 @@ import keyboardLayout from "./keyboardLayout";
 const shift = ({ input, n }: { input: string; n: number }) => {
   let output = "";
 
-  // Mengubah input ke dalam bentuk positif jika negatif
+  // Converts the input into positive form if it is negative
   n = n % (keyboardLayout.length * keyboardLayout[0].length);
   if (n < 0) {
     n += keyboardLayout.length * keyboardLayout[0].length;
@@ -14,7 +14,7 @@ const shift = ({ input, n }: { input: string; n: number }) => {
     let rowIndex = -1;
     let colIndex = -1;
 
-    // Mencari posisi karakter dalam layout keyboard
+    // Finds the position of a character in the keyboard layout
     for (let row = 0; row < keyboardLayout.length; row++) {
       const index = keyboardLayout[row].indexOf(char);
       if (index !== -1) {
@@ -24,13 +24,13 @@ const shift = ({ input, n }: { input: string; n: number }) => {
       }
     }
 
-    // Menggeser posisi karakter sesuai dengan nilai n
+    // Shifts the character position according to the n value
     let newRow =
       (rowIndex + Math.floor((colIndex + n) / keyboardLayout[0].length)) %
       keyboardLayout.length;
     let newCol = (colIndex + n) % keyboardLayout[0].length;
 
-    // Membuat karakter baru berdasarkan posisi yang telah digeser
+    // Create a new character based on the position that has been shifted
     let shiftedChar = keyboardLayout[newRow][newCol];
     output += shiftedChar;
   }
